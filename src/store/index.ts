@@ -8,7 +8,8 @@ export const store = new Vuex.Store({
   state: {
     weather: {},
     dataReceived: false,
-    startLoading: false
+    startLoading: false,
+    temperature: "undefined"
   },
   mutations: {
     UPDATE_WEATHER(state, payload) {
@@ -17,6 +18,7 @@ export const store = new Vuex.Store({
         .then(response => {
           state.weather = response.data;
           state.dataReceived = true;
+          state.temperature = response.data[0].temp
         })
         .catch(error => {
           state.startLoading = false;
