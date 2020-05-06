@@ -45,9 +45,6 @@ export default Vue.extend({
     };
   },
   computed: {
-    // getWeatherForecast(): object {
-    //   return this.$store.state.weather;
-    // },
     checkDataReceived(): boolean {
       return this.$store.state.dataReceived;
     },
