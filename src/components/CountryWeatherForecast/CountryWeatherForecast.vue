@@ -6,6 +6,22 @@
       <h1 class="text-white display-1 font-weight-bold mt-5 mb-5">
         {{ this.$store.state.weather[0].temp }}&deg;C
       </h1>
+      <div class="row">
+        <div class="weekdays">
+          <ul>
+            <li
+              v-for="weather in getDailyTemperature"
+              :key="weather.day"
+              class="weekday text-black"
+            >
+              {{ weather.weekday }}
+              <span class="text-white text-center" style="font-size: 40px;"
+                >{{ weather.temp }}<span class="symbol">&deg;C</span></span
+              >
+            </li>
+          </ul>
+        </div>
+      </div>
     </div>
   </div>
 </template>
@@ -28,6 +44,17 @@ export default Vue.extend({
       const day = date.getDate();
       const year = date.getFullYear();
       return month + " " + day + " " + year;
+    },
+    getDailyTemperature() {
+      const arr: Array<{ temp: number; weekday: string }> = [];
+      const countryWeather = this.$store.state.weather;
+      countryWeather.map((day: any) => {
+        arr.push({
+          temp: day.temp,
+          weekday: day.valid_date,
+        });
+      });
+      return arr;
     },
   },
 });
