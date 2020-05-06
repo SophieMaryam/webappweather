@@ -15,7 +15,7 @@ export const store = new Vuex.Store({
       state.startLoading = true;
       getWeatherApi(payload)
         .then(response => {
-          state.weather = response.data[0];
+          state.weather = response.data;
           state.dataReceived = true;
         })
         .catch(error => {
