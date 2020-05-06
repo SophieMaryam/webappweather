@@ -14,11 +14,11 @@
 import Vue from "vue";
 
 export default Vue.extend({
-  name: "CountryWeatherForecast",
+  name: "CountryWeatherForecast", 
   computed: {
-    getWeatherForecast(): object {
-      return this.$store.state.weather;
-    },
+    // getWeatherForecast(): object {
+    //   return this.$store.state.weather;
+    // },
     checkDataReceived(): boolean {
       return this.$store.state.dataReceived;
     },
