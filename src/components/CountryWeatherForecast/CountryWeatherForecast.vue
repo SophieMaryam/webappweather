@@ -67,6 +67,7 @@ export default Vue.extend({
           weekday: this.reformatWeekdays(day.valid_date),
         });
       });
+      this.orderWeekdays(arr);
       return arr;
     },
   },
@@ -76,6 +77,12 @@ export default Vue.extend({
       const keys = Object.keys(this.days)
       const dayName: string = keys[reformatedDate.getDay()];
       return dayName;
+    },
+    orderWeekdays(arr: Array<{ temp: number; weekday: string }>) {
+      const days: any = this.days;
+      arr.sort((a: any, b: any) => {
+        return days[a.weekday] - days[b.weekday];
+      });
     }
   }
 });
