@@ -30,7 +30,20 @@
 import Vue from "vue";
 
 export default Vue.extend({
-  name: "CountryWeatherForecast", 
+  name: "CountryWeatherForecast",
+  data() {
+    return {
+      days: {
+        Sunday: 7,
+        Monday: 1,
+        Tuesday: 2,
+        Wednesday: 3,
+        Thursday: 4,
+        Friday: 5,
+        Saturday: 6
+      },
+    };
+  },
   computed: {
     // getWeatherForecast(): object {
     //   return this.$store.state.weather;
@@ -51,12 +64,20 @@ export default Vue.extend({
       countryWeather.map((day: any) => {
         arr.push({
           temp: day.temp,
-          weekday: day.valid_date,
+          weekday: this.reformatWeekdays(day.valid_date),
         });
       });
       return arr;
     },
   },
+  methods: {
+    reformatWeekdays(date: string): string {
+      const reformatedDate = new Date(date);
+      const keys = Object.keys(this.days)
+      const dayName: string = keys[reformatedDate.getDay()];
+      return dayName;
+    }
+  }
 });
 </script>
 
