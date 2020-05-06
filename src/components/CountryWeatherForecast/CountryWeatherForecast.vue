@@ -1,7 +1,8 @@
 <template>
-  <div class="text-center justify-content-center col-md-12">
+  <div class="weather-forecast text-center justify-content-center col-md-12">
     <div v-if="!checkDataReceived" class="loader"></div>
     <div v-else>
+      <p class="text-uppercase font-weight-bold">{{ reformatTodaysDate }}</p>
       <h1 class="text-white display-1 font-weight-bold mt-5 mb-5">
         {{ this.$store.state.weather[0].temp }}&deg;C
       </h1>
@@ -20,7 +21,14 @@ export default Vue.extend({
     },
     checkDataReceived(): boolean {
       return this.$store.state.dataReceived;
-    }
+    },
+    reformatTodaysDate(): string {
+      const date = new Date(this.$store.state.weather[0].valid_date);
+      const month = date.toLocaleString("default", { month: "long" });
+      const day = date.getDate();
+      const year = date.getFullYear();
+      return month + " " + day + " " + year;
+    },
   },
 });
 </script>
