@@ -1,6 +1,9 @@
 <template>
   <div class="searchbar-container">
     <b-form @submit.prevent="onSubmit(city)" class="mx-auto" inline>
+      <div class="form-group weather-icon col-md-1">
+        <font-awesome-icon icon="cloud-sun" size="2x" />
+      </div>
       <div class="form-row form-content col-md-12">
         <div class="form-group row col-md-9">
           <b-input-group>
@@ -29,12 +32,12 @@ export default Vue.extend({
   name: "WeatherInput",
   data() {
     return {
-      city: ""
+      city: "",
     };
   },
   methods: {
     onSubmit(city: string) {
-      console.log(city)
+      console.log(city);
     },
   },
 });
