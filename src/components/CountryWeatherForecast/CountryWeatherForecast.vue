@@ -4,7 +4,7 @@
     <div v-else>
       <p class="text-uppercase font-weight-bold">{{ reformatTodaysDate }}</p>
       <h1 class="text-white display-1 font-weight-bold mt-5 mb-5">
-        {{ this.$store.state.weather[0].temp }}&deg;C
+        {{ this.$store.state.temperature }}&deg;C
       </h1>
       <div class="row">
         <div class="weekdays">

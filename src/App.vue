@@ -1,5 +1,9 @@
 <template>
-  <div class="font" :style="{ backgroundImage: updateBgColor, height: height }">
+  <div
+    class="font"
+    :style="{ backgroundImage: updateBgColor }"
+    style="height: 100vh"
+  >
     <WeatherApp />
   </div>
 </template>
@@ -16,8 +20,7 @@ export default Vue.extend({
       color2: "#cceeff",
       color3: "#ffa500",
       color4: "#FFFACD",
-      color5: "#66b3ff",
-      height: "100vh"
+      color5: "#66b3ff"
     };
   },
   components: {
@@ -25,7 +28,7 @@ export default Vue.extend({
   },
   computed: {
     updateBgColor(): string {
-      const temp = this.$store.state.weather.temp;
+      const temp = this.$store.state.temperature;
       if (temp > 20) {
         return `linear-gradient(to bottom right, ${this.color4}, ${this.color3})`;
       } else if (temp <= 20 || temp >= 0) {
