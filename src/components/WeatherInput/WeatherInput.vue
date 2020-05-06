@@ -56,9 +56,17 @@ export default Vue.extend({
       countrySelected: "AF"
     };
   },
+  created() {
+    this.sorted();
+  },
   methods: {
-    onSubmit(city: string) {
-      console.log(city);
+    onSubmit(country: string, city: string) {
+      console.log(country + city);
+    },
+    sorted(): void {
+      this.countries.sort((a: { code: string }, b: { code: string }) => {
+        return a.code > b.code ? 1 : b.code > a.code ? -1 : 0;
+      });
     },
   },
 });
