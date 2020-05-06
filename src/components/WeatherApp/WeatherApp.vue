@@ -1,7 +1,7 @@
 <template>
   <div class="centered">
     <WeatherInput />
-    <CountryWeatherForecast />
+    <CountryWeatherForecast v-if="this.$store.state.startLoading" />
   </div>
 </template>
 <script lang="ts">
