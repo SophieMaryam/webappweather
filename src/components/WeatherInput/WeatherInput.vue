@@ -67,8 +67,8 @@ export default Vue.extend({
       this.countries.sort((a: { code: string }, b: { code: string }) => {
         return a.code > b.code ? 1 : b.code > a.code ? -1 : 0;
       });
-    },
-  },
+    }
+  }
 });
 </script>
 

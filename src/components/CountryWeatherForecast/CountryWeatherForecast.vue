@@ -41,7 +41,7 @@ export default Vue.extend({
         Thursday: 4,
         Friday: 5,
         Saturday: 6
-      },
+      }
     };
   },
   computed: {
@@ -61,17 +61,17 @@ export default Vue.extend({
       countryWeather.map((day: any) => {
         arr.push({
           temp: day.temp,
-          weekday: this.reformatWeekdays(day.valid_date),
+          weekday: this.reformatWeekdays(day.valid_date)
         });
       });
       this.orderWeekdays(arr);
       return arr;
-    },
+    }
   },
   methods: {
     reformatWeekdays(date: string): string {
       const reformatedDate = new Date(date);
-      const keys = Object.keys(this.days)
+      const keys = Object.keys(this.days);
       const dayName: string = keys[reformatedDate.getDay()];
       return dayName;
     },

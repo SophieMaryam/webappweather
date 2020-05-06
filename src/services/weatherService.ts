@@ -7,7 +7,7 @@ export function getWeatherApi(payload: { country: string; city: string }) {
   return axios
     .get(CURRENT_WEATHER)
     .then(response => {
-        return response.data;
+      return response.data;
     })
     .catch(error => {
       console.log(error);

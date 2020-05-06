@@ -8,7 +8,7 @@ export const store = new Vuex.Store({
   state: {
     weather: {},
     dataReceived: false,
-    startLoading: false,
+    startLoading: false
   },
   mutations: {
     UPDATE_WEATHER(state, payload) {
