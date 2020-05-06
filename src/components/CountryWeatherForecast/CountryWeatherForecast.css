@@ -4,6 +4,23 @@
     word-spacing: 0.5px;
 }
 
+.weekdays {
+  display: block;
+
+}
+
+.weekday {
+    list-style-type: none;
+    padding-left: 30px;
+    padding-right: 10px;
+    display: table-cell;
+}
+
+.symbol {
+  font-style: "Roboto", sans-serif;
+  font-size: 10px;
+}
+
 .loader {
     border: 5px solid black;
     border-top: 5px solid transparent;
