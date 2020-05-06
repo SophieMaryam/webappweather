@@ -1,16 +1,19 @@
 <template>
   <div class="centered">
     <WeatherInput />
+    <CountryWeatherForecast />
   </div>
 </template>
 <script lang="ts">
 import Vue from "vue";
 import WeatherInput from "../WeatherInput/WeatherInput.vue";
+import CountryWeatherForecast from "../CountryWeatherForecast/CountryWeatherForecast.vue";
 
 export default Vue.extend({
   name: "WeatherApp",
   components: {
-    WeatherInput
+    WeatherInput,
+    CountryWeatherForecast
   }
 });
 </script>
