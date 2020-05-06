@@ -61,7 +61,7 @@ export default Vue.extend({
   },
   methods: {
     onSubmit(country: string, city: string) {
-      console.log(country + city);
+      this.$store.dispatch("updateWeather", { country, city });
     },
     sorted(): void {
       this.countries.sort((a: { code: string }, b: { code: string }) => {
