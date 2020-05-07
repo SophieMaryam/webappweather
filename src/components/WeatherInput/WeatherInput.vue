@@ -1,5 +1,5 @@
 <template>
-  <div class="contaiiner searchbar-container">
+  <div class="container searchbar-container">
     <b-form
       @submit.prevent="onSubmit(countrySelected, city)"
       class="mx-auto"
@@ -23,7 +23,7 @@
             >
           </b-form-select>
         </div>
-        <div class="form-group row col-md-9">
+        <div class="form-group col-md-9">
           <b-input-group>
             <b-input
               class="country-input"
