@@ -1,5 +1,5 @@
 <template>
-  <div class="searchbar-container">
+  <div class="contaiiner searchbar-container">
     <b-form
       @submit.prevent="onSubmit(countrySelected, city)"
       class="mx-auto"
