@@ -4,7 +4,7 @@
     <div v-else>
       <p class="text-uppercase font-weight-bold">{{ reformatTodaysDate }}</p>
       <h1 class="text-white display-1 font-weight-bold mt-5 mb-5">
-        {{ this.$store.state.temperature }}&deg;C
+        {{ temperature }}&deg;C
       </h1>
       <div class="row">
         <div class="weekdays">
@@ -45,6 +45,9 @@ export default Vue.extend({
     };
   },
   computed: {
+    temperature() {
+      return this.$store.state.temperature;
+    },
     checkDataReceived(): boolean {
       return this.$store.state.dataReceived;
     },
@@ -61,12 +64,12 @@ export default Vue.extend({
       countryWeather.map((day: any) => {
         arr.push({
           temp: day.temp,
-          weekday: this.reformatWeekdays(day.valid_date)
+          weekday: this.reformatWeekdays(day.valid_date),
         });
       });
       this.orderWeekdays(arr);
       return arr;
-    }
+    },
   },
   methods: {
     reformatWeekdays(date: string): string {
