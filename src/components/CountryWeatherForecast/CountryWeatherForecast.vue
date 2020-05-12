@@ -1,27 +1,31 @@
 <template>
-  <div class="weather-forecast text-center justify-content-center col-md-12">
+  <div class="weather-forecast">
     <div v-if="!checkDataReceived" class="loader"></div>
     <div v-else>
       <p class="text-uppercase font-weight-bold">{{ reformatTodaysDate }}</p>
-      <h1 class="text-white display-1 font-weight-bold mt-5 mb-5">
-        {{ temperature }}&deg;C
+      <h1 class="current-temp text-white font-weight-bold mt-4 mb-5">
+        {{ temperature }}<sup class="font-size">&deg;C</sup>
       </h1>
-      <div class="row">
-        <div class="weekdays">
-          <ul>
-            <li
-              v-for="weather in getDailyTemperature"
-              :key="weather.day"
-              class="weekday text-black"
-            >
-              {{ weather.weekday }}
-              <span class="text-white text-center" style="font-size: 40px;"
-                >{{ weather.temp }}<span class="symbol">&deg;C</span></span
-              >
-            </li>
-          </ul>
-        </div>
-      </div>
+      <ul class="weekdays">
+        <li
+          v-for="weather in getDailyTemperature"
+          :key="weather.day"
+          class="weekday text-black"
+        >
+          {{ weather.weekday }}
+          <span class="text-white daily-temp"
+            >{{ weather.temp }}<sup class="symbol">&deg;C</sup></span
+          >
+          <img
+            class="image"
+            :src="
+              'https://www.weatherbit.io/static/img/icons/' +
+                weather.icon +
+                '.png'
+            "
+          />
+        </li>
+      </ul>
     </div>
   </div>
 </template>
@@ -40,8 +44,8 @@ export default Vue.extend({
         Wednesday: 3,
         Thursday: 4,
         Friday: 5,
-        Saturday: 6
-      }
+        Saturday: 6,
+      },
     };
   },
   computed: {
@@ -59,12 +63,13 @@ export default Vue.extend({
       return month + " " + day + " " + year;
     },
     getDailyTemperature() {
-      const arr: Array<{ temp: number; weekday: string }> = [];
+      const arr: Array<{ temp: number; weekday: string; icon: string }> = [];
       const countryWeather = this.$store.state.weather;
       countryWeather.map((day: any) => {
         arr.push({
           temp: day.temp,
           weekday: this.reformatWeekdays(day.valid_date),
+          icon: day.weather.icon,
         });
       });
       this.orderWeekdays(arr);
@@ -83,8 +88,8 @@ export default Vue.extend({
       arr.sort((a: any, b: any) => {
         return days[a.weekday] - days[b.weekday];
       });
-    }
-  }
+    },
+  },
 });
 </script>
 

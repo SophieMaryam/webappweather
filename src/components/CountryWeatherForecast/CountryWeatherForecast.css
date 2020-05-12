@@ -4,22 +4,52 @@
   word-spacing: 0.5px;
 }
 
+.current-temp {
+  font-size: 80px;
+}
+
+.daily-temp {
+  font-size: 40px;
+}
+
 .weekday {
   list-style-type: none;
-  padding-left: 30px;
-  padding-right: 10px;
+  padding-right: 30px;
   display: table-cell;
 }
 
-@media only screen and (max-width: 600px) {
-  .weekday {
-    display: table-header-group;
-  }
+.image {
+  width: 70px;
+  justify-content: center;
 }
 
 .symbol {
   font-style: "Roboto", sans-serif;
   font-size: 10px;
+}
+
+@media only screen and (max-width: 800px) {
+  .current-temp {
+    font-size: 60px;
+  }
+
+  .weekdays {
+    text-align: left;
+  }
+
+  .weekday {
+    display: table-header-group;
+  }
+
+  .daily-temp {
+    padding-right: 10px;
+    font-size: 10px;
+  }
+
+  .image {
+    padding-left: 20px;
+    width: 50px;
+  }
 }
 
 .loader {
@@ -42,3 +72,5 @@
     transform: rotate(360deg);
   }
 }
+
+
