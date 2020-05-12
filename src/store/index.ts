@@ -18,8 +18,8 @@ export const store = new Vuex.Store({
       getWeatherApi(payload)
         .then(response => {
           state.weather = response.data;
-          state.temperature = response.data[0].temp
-          state.cityName = response.city_name
+          state.temperature = response.data[0].temp;
+          state.cityName = response.city_name;
           state.dataReceived = true;
         })
         .catch(error => {
