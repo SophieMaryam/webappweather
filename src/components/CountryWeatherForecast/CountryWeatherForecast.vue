@@ -13,7 +13,7 @@
           :key="weather.day"
           class="weekday text-black"
         >
-          {{ weather.weekday }}
+          {{ weather.weekDay }}
           <span class="text-white daily-temp"
             >{{ weather.temp }}<sup class="symbol">&deg;C</sup></span
           >
