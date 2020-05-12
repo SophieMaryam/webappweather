@@ -9,7 +9,8 @@ export const store = new Vuex.Store({
     weather: {},
     dataReceived: false,
     startLoading: false,
-    temperature: "undefined"
+    temperature: "undefined",
+    cityName: ""
   },
   mutations: {
     UPDATE_WEATHER(state, payload) {
@@ -17,8 +18,9 @@ export const store = new Vuex.Store({
       getWeatherApi(payload)
         .then(response => {
           state.weather = response.data;
-          state.dataReceived = true;
           state.temperature = response.data[0].temp
+          state.cityName = response.city_name
+          state.dataReceived = true;
         })
         .catch(error => {
           state.startLoading = false;
@@ -30,7 +32,9 @@ export const store = new Vuex.Store({
   getters: {
     weather: state => state.weather,
     dataReceived: state => state.dataReceived,
-    startLoading: state => state.startLoading
+    startLoading: state => state.startLoading,
+    cityName: state => state.cityName,
+    temperature: state => state.temperature
   },
   actions: {
     updateWeather(context, payload: object) {
