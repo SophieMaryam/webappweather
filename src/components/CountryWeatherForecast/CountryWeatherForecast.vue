@@ -70,7 +70,7 @@ export default Vue.extend({
         arr.push({
           temp: day.temp,
           weekDay: this.reformatWeekdays(day.valid_date),
-          icon: day.weather.icon,
+          icon: day.weather.icon
         });
       });
       this.orderWeekdays(arr);
