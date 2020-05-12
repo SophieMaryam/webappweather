@@ -1,7 +1,10 @@
 <template>
-  <div class="centered">
-    <WeatherInput />
-    <CountryWeatherForecast v-if="this.$store.state.startLoading" />
+  <div id="centered" :class="[this.$store.state.startLoading ? '' : 'width']">
+    <WeatherInput v-show="!this.$store.state.startLoading" />
+    <CountryWeatherForecast
+      class="work"
+      v-show="this.$store.state.startLoading"
+    />
   </div>
 </template>
 <script lang="ts">
@@ -14,7 +17,7 @@ export default Vue.extend({
   components: {
     WeatherInput,
     CountryWeatherForecast
-  }
+  },
 });
 </script>
 
