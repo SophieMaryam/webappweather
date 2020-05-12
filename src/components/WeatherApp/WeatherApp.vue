@@ -1,10 +1,7 @@
 <template>
-  <div id="centered" :class="[this.$store.state.startLoading ? '' : 'width']">
-    <WeatherInput v-show="!this.$store.state.startLoading" />
-    <CountryWeatherForecast
-      class="work"
-      v-show="this.$store.state.startLoading"
-    />
+  <div id="centered" :class="[isLoading ? '' : 'width']">
+    <WeatherInput v-show="!isLoading || !isMobile" />
+    <CountryWeatherForecast class="work" v-show="isLoading" />
   </div>
 </template>
 <script lang="ts">
@@ -16,8 +13,16 @@ export default Vue.extend({
   name: "WeatherApp",
   components: {
     WeatherInput,
-    CountryWeatherForecast
+    CountryWeatherForecast,
   },
+  computed: {
+    isLoading() {
+      return this.$store.state.startLoading;
+    },
+    isMobile() {
+      return window.matchMedia("only screen and (max-width: 760px)").matches;
+    }
+  }
 });
 </script>
 
