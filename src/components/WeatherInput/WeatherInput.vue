@@ -1,37 +1,35 @@
 <template>
-  <div class="container searchbar-container">
+  <div class="searchbar-container">
     <b-form
       @submit.prevent="onSubmit(countrySelected, city)"
-      class="mx-auto"
-      inline
+      class="form-content"
     >
-      <div class="form-row form-content col-md-12">
-        <div class="form-group weather-icon col-md-1">
+      <div class="form-row justify-content-center">
+        <div class="form-group weather-icon col-md-auto">
           <font-awesome-icon icon="cloud-sun" size="2x" />
         </div>
-        <div class="form-group col-md-1 mr-4">
+        <div class="form-group col-4 col-md-auto">
           <b-form-select v-model="countrySelected">
             <b-form-select-option value="AF">AF</b-form-select-option>
             <b-form-select-option
               v-for="country in countries"
               :key="country.code"
               :value="country.code"
-              select-size="10"
               required
             >
               {{ country.code }}</b-form-select-option
             >
           </b-form-select>
         </div>
-        <div class="form-group col-md-9">
-          <b-input-group>
+        <div class="form-group col-12 col-md-7">
+          <b-input-group class="">
             <b-input
               class="country-input"
               placeholder="Please enter your location here..."
               v-model="city"
               required
             />
-            <b-input-group-append @click="onSubmit(countrySelected, city)">
+            <b-input-group-append>
               <span class="input-group-text">
                 <font-awesome-icon icon="search" />
               </span>
