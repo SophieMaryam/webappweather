@@ -1,7 +1,8 @@
 <template>
   <div class="weather-forecast">
-    <div v-if="!checkDataReceived" class="loader"></div>
+    <div v-if="!dataReceived" class="loader"></div>
     <div v-else>
+      <h3>{{ cityName }}</h3>
       <p class="text-uppercase font-weight-bold">{{ reformatTodaysDate }}</p>
       <h1 class="current-temp text-white font-weight-bold mt-4 mb-5">
         {{ temperature }}<sup class="font-size">&deg;C</sup>
@@ -32,6 +33,7 @@
 
 <script lang="ts">
 import Vue from "vue";
+import { mapGetters } from "vuex";
 
 export default Vue.extend({
   name: "CountryWeatherForecast",
@@ -44,17 +46,12 @@ export default Vue.extend({
         Wednesday: 3,
         Thursday: 4,
         Friday: 5,
-        Saturday: 6,
-      },
+        Saturday: 6
+      }
     };
   },
   computed: {
-    temperature() {
-      return this.$store.state.temperature;
-    },
-    checkDataReceived(): boolean {
-      return this.$store.state.dataReceived;
-    },
+    ...mapGetters(["temperature", "dataReceived", "cityName"]),
     reformatTodaysDate(): string {
       const date = new Date(this.$store.state.weather[0].valid_date);
       const month = date.toLocaleString("default", { month: "long" });
@@ -63,18 +60,22 @@ export default Vue.extend({
       return month + " " + day + " " + year;
     },
     getDailyTemperature() {
-      const arr: Array<{ temp: number; weekday: string; icon: string }> = [];
+      const arr: Array<{
+        temp: number;
+        weekDay: string;
+        icon: string;
+      }> = [];
       const countryWeather = this.$store.state.weather;
       countryWeather.map((day: any) => {
         arr.push({
           temp: day.temp,
-          weekday: this.reformatWeekdays(day.valid_date),
+          weekDay: this.reformatWeekdays(day.valid_date),
           icon: day.weather.icon,
         });
       });
       this.orderWeekdays(arr);
       return arr;
-    },
+    }
   },
   methods: {
     reformatWeekdays(date: string): string {
@@ -83,13 +84,13 @@ export default Vue.extend({
       const dayName: string = keys[reformatedDate.getDay()];
       return dayName;
     },
-    orderWeekdays(arr: Array<{ temp: number; weekday: string }>) {
+    orderWeekdays(arr: Array<{ weekDay: string }>) {
       const days: any = this.days;
       arr.sort((a: any, b: any) => {
-        return days[a.weekday] - days[b.weekday];
+        return days[a.weekDay] - days[b.weekDay];
       });
-    },
-  },
+    }
+  }
 });
 </script>
 
