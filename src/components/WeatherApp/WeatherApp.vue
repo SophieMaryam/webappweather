@@ -13,7 +13,7 @@ export default Vue.extend({
   name: "WeatherApp",
   components: {
     WeatherInput,
-    CountryWeatherForecast,
+    CountryWeatherForecast
   },
   computed: {
     isLoading() {
