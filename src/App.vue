@@ -2,7 +2,7 @@
   <div
     class="font"
     :style="{ backgroundImage: updateBgColor }"
-    style="height: 100vh"
+    style="height: 100vh;"
   >
     <WeatherApp />
   </div>
