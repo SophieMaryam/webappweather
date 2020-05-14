@@ -22,7 +22,7 @@
           </b-form-select>
         </div>
         <div class="form-group col-12 col-md-7">
-          <b-input-group class="">
+          <b-input-group>
             <b-input
               class="country-input"
               placeholder="Please enter your location here..."
