@@ -14,19 +14,11 @@ export const store = new Vuex.Store({
   },
   mutations: {
     UPDATE_WEATHER(state, payload) {
+      state.weather = payload.data;
+      state.temperature = payload.data[0].temp;
+      state.cityName = payload.city_name;
+      state.dataReceived = true;
       state.startLoading = true;
-      getWeatherApi(payload)
-        .then(response => {
-          state.weather = response.data;
-          state.temperature = response.data[0].temp;
-          state.cityName = response.city_name;
-          state.dataReceived = true;
-        })
-        .catch(error => {
-          state.startLoading = false;
-          console.log("Error", error);
-          state.dataReceived = false;
-        });
     }
   },
   getters: {
@@ -37,8 +29,15 @@ export const store = new Vuex.Store({
     temperature: state => state.temperature
   },
   actions: {
-    updateWeather(context, payload: object) {
-      context.commit("UPDATE_WEATHER", payload);
+    async updateWeather({commit}, payload: { country: string; city: string; }) {
+      await getWeatherApi(payload)
+        .then(response => {
+          console.log(response.data)
+          commit("UPDATE_WEATHER", response)
+        })
+        .catch(error => {
+          console.log("Error", error);
+        }); 
     }
   }
 });
