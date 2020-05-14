@@ -1,9 +1,11 @@
 <template>
   <div id="centered" :class="[isLoading ? '' : 'width']">
     <WeatherInput v-show="!isLoading || !isMobile" />
-    <CountryWeatherForecast class="work" v-show="isLoading" />
+    <CountryWeatherForecast v-show="isLoading" />
   </div>
 </template>
+
+<style scoped src="./WeatherApp.css"></style>
 <script lang="ts">
 import Vue from "vue";
 import WeatherInput from "../WeatherInput/WeatherInput.vue";
@@ -25,5 +27,3 @@ export default Vue.extend({
   }
 });
 </script>
-
-<style scoped src="./WeatherApp.css"></style>
