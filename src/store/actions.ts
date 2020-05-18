@@ -1,15 +1,15 @@
 import { getWeatherApi } from "../services/weatherService";
 export const actions = {
   async updateWeather(
-    context: { commit: (arg0: string, arg1: any) => void },
+    context: { commit: (arg0: string, arg1: string) => void },
     payload: { country: string; city: string }
   ) {
     await getWeatherApi(payload)
-      .then((response) => {
-        console.log(response.data);
-        context.commit("UPDATE_WEATHER", response);
+      .then(res => {
+        console.log(res.data);
+        context.commit("UPDATE_WEATHER", res);
       })
-      .catch((error) => {
+      .catch(error => {
         console.log("Error", error);
       });
   }
