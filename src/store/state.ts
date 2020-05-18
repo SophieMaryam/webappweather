@@ -1,7 +1,7 @@
-export const state = { 
-    weather: {},
-    dataReceived: false,
-    startLoading: false,
-    temperature: "undefined",
-    cityName: ""
-}
+export const state = {
+  weather: {},
+  dataReceived: false,
+  startLoading: false,
+  temperature: "undefined",
+  cityName: ""
+};

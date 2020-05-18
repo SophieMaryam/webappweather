@@ -1,7 +1,7 @@
 import { getWeatherApi } from "../services/weatherService";
 export const actions = {
   async updateWeather(
-    context: { commit: (arg0: string, arg1: any) => void; },
+    context: { commit: (arg0: string, arg1: any) => void },
     payload: { country: string; city: string }
   ) {
     await getWeatherApi(payload)
@@ -12,5 +12,5 @@ export const actions = {
       .catch((error) => {
         console.log("Error", error);
       });
-  },
+  }
 };
