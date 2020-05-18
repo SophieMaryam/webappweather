@@ -51,9 +51,9 @@ export default Vue.extend({
     };
   },
   computed: {
-    ...mapGetters(["temperature", "dataReceived", "cityName"]),
+    ...mapGetters(["temperature", "dataReceived", "cityName", "weather"]),
     reformatTodaysDate(): string {
-      const date = new Date(this.$store.state.weather[0].valid_date);
+      const date = new Date(this.weather[0].valid_date);
       const month = date.toLocaleString("default", { month: "long" });
       const day = date.getDate();
       const year = date.getFullYear();
@@ -65,8 +65,7 @@ export default Vue.extend({
         weekDay: string;
         icon: string;
       }> = [];
-      const countryWeather = this.$store.state.weather;
-      countryWeather.map((day: any) => {
+      this.weather.map((day: any) => {
         arr.push({
           temp: day.temp,
           weekDay: this.reformatWeekdays(day.valid_date),
