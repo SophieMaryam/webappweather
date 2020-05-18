@@ -16,11 +16,11 @@ export default Vue.extend({
   name: "App",
   data() {
     return {
-      color1: "#000099",
-      color2: "#cceeff",
-      color3: "#ffa500",
-      color4: "#FFFACD",
-      color5: "#66b3ff"
+      darkBlue: "#000099",
+      lightBlue: "#cceeff",
+      orange: "#ffa500",
+      yellow: "#fffacd",
+      mediumBlue: "#66b3ff"
     };
   },
   components: {
@@ -29,16 +29,16 @@ export default Vue.extend({
   computed: {
     updateBgColor(): string {
       const temp = this.$store.state.temperature;
-      if (temp > 20) {
-        return `linear-gradient(to bottom right, ${this.color4}, ${this.color3})`;
-      } else if (temp <= 20 || temp >= 0) {
-        return `linear-gradient(to bottom right, ${this.color2}, ${this.color3})`;
-      } else if (temp <= 0 || temp >= -20) {
-        return `linear-gradient(to bottom right, ${this.color5}, ${this.color2})`;
-      } else if (temp > -20) {
-        return `linear-gradient(to bottom right, ${this.color1}, ${this.color5})`;
+      if (temp >= 20) {
+        return `linear-gradient(to bottom right, ${this.yellow}, ${this.orange})`;
+      } else if (temp < 20 && temp > 0) {
+        return `linear-gradient(to bottom right, ${this.lightBlue}, ${this.orange})`;
+      } else if (temp <= 0 && temp > -20) {
+        return `linear-gradient(to bottom right, ${this.mediumBlue}, ${this.lightBlue})`;
+      } else if (temp <= -20) {
+        return `linear-gradient(to bottom right, ${this.darkBlue}, ${this.mediumBlue})`;
       } else {
-        return `linear-gradient(to bottom right, ${this.color2}, ${this.color4})`;
+        return `linear-gradient(to bottom right, ${this.lightBlue}, ${this.yellow})`;
       }
     }
   }
