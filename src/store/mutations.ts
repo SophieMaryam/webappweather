@@ -2,17 +2,22 @@ export const mutations = {
   UPDATE_WEATHER(
     state: {
       weather: object;
-      temperature: string | undefined;
-      cityName: string;
       dataReceived: boolean;
       startLoading: boolean;
     },
-    payload: { data: { temp: string }[]; city_name: string }
+    payload: { data: any; }
   ) {
     state.weather = payload.data;
-    state.temperature = payload.data[0].temp;
-    state.cityName = payload.city_name;
     state.dataReceived = true;
     state.startLoading = true;
-  }
+  },
+  UPDATE_TEMPERATURE(
+    state: { temperature: string | undefined },
+    payload: { data: { temp: string }[] }
+  ) {
+    state.temperature = payload.data[0].temp;
+  },
+  UPDATE_CITY_NAME(state: { cityName: string }, payload: string) {
+    state.cityName = payload;
+  },
 };
