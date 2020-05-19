@@ -34,16 +34,3 @@ describe('mutations', () => {
     expect(state.startLoading).toBe(startLoading)
   })
 });
-
-// UPDATE_WEATHER(
-//     state: {
-//       weather: object;
-//       dataReceived: boolean;
-//       startLoading: boolean;
-//     },
-//     payload: { data: { temp: string }[] }
-//   ) {
-//     state.weather = payload.data;
-//     state.dataReceived = true;
-//     state.startLoading = true;
-//   },
