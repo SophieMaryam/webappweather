@@ -1,5 +1,5 @@
 <template>
-  <div id="centered" :class="[isLoading ? '' : 'width']">
+  <div class="centered" :class="isLoading ? '' : 'width'">
     <WeatherInput v-show="!isLoading || !isMobile" />
     <CountryWeatherForecast v-show="isLoading" />
   </div>
