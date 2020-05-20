@@ -55,13 +55,13 @@ export default Vue.extend({
     };
   },
   created() {
-    this.sorted();
+    this.sortCountryCodes();
   },
   methods: {
     onSubmit(country: string, city: string) {
       this.$store.dispatch("updateWeather", { country, city });
     },
-    sorted(): void {
+    sortCountryCodes(): void {
       this.countries.sort((a: { code: string }, b: { code: string }) => {
         return a.code > b.code ? 1 : b.code > a.code ? -1 : 0;
       });
