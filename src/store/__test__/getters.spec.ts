@@ -44,7 +44,7 @@ describe("Getters after API request", () => {
     dataReceived: true,
     startLoading: true,
     cityName: "Amsterdam",
-    temperature: 20,
+    temperature: "20",
     weather: {
       data: [
         {
@@ -73,7 +73,7 @@ describe("Getters after API request", () => {
 
   it("returns temperature as 20", () => {
     const result = getters.temperature(state);
-    const expectedResult = 20;
+    const expectedResult = "20";
     expect(result).toBe(expectedResult);
   });
 
