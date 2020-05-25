@@ -3,13 +3,14 @@
     <b-form
       @submit.prevent="onSubmit(countrySelected, city)"
       class="form-content"
+      id="form"
     >
       <div class="form-row justify-content-center">
         <div class="form-group weather-icon col-md-auto">
           <font-awesome-icon icon="cloud-sun" size="2x" />
         </div>
         <div class="form-group col-4 col-md-auto">
-          <b-form-select v-model="countrySelected">
+          <b-form-select class="countrySelected" v-model="countrySelected">
             <b-form-select-option value="AF">AF</b-form-select-option>
             <b-form-select-option
               v-for="country in countries"
@@ -24,7 +25,7 @@
         <div class="form-group col-12 col-md-7">
           <b-input-group>
             <b-input
-              class="country-input"
+              class="city"
               placeholder="Please enter your location here..."
               v-model="city"
               required
