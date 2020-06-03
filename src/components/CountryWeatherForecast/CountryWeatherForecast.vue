@@ -1,9 +1,11 @@
 <template>
   <div class="weather-forecast">
     <div v-if="!dataReceived" class="loader"></div>
-    <div v-else>
-      <h3>{{ cityName }}</h3>
-      <p class="text-uppercase font-weight-bold">{{ reformatTodaysDate }}</p>
+    <div v-else class="weather-data">
+      <h3 class="cityName">{{ cityName }}</h3>
+      <p class="reformatted-date text-uppercase font-weight-bold">
+        {{ reformatTodaysDate }}
+      </p>
       <h1 class="current-temp text-white font-weight-bold mt-4 mb-5">
         {{ temperature }}<sup class="font-size">&deg;C</sup>
       </h1>
@@ -53,7 +55,7 @@ export default Vue.extend({
   computed: {
     ...mapGetters(["temperature", "dataReceived", "cityName", "weather"]),
     reformatTodaysDate(): string {
-      const date = new Date(this.weather[0].valid_date);
+      const date = new Date(this.weather.data[0].valid_date);
       const month = date.toLocaleString("default", { month: "long" });
       const day = date.getDate();
       const year = date.getFullYear();
@@ -65,7 +67,7 @@ export default Vue.extend({
         weekDay: string;
         icon: string;
       }> = [];
-      this.weather.map((day: any) => {
+      this.weather.data.map((day: any) => {
         arr.push({
           temp: day.temp,
           weekDay: this.reformatWeekdays(day.valid_date),
