@@ -5,17 +5,17 @@ export const mutations = {
       dataReceived: boolean;
       startLoading: boolean;
     },
-    payload: { data: any; }
+    payload: object
   ) {
-    state.weather = payload.data;
+    state.weather = payload;
     state.dataReceived = true;
     state.startLoading = true;
   },
   UPDATE_TEMPERATURE(
     state: { temperature: string | undefined },
-    payload: { data: { temp: string }[] }
+    payload: { temp: string | undefined; }[]
   ) {
-    state.temperature = payload.data[0].temp;
+    state.temperature = payload[0].temp;
   },
   UPDATE_CITY_NAME(state: { cityName: string }, payload: string) {
     state.cityName = payload;
