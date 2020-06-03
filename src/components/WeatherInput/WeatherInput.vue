@@ -59,8 +59,8 @@ export default Vue.extend({
     this.sortCountryCodes();
   },
   methods: {
-    onSubmit(country: string, city: string) {
-      this.$store.dispatch("updateWeather", { country, city });
+    onSubmit(countrySelected: string, city: string) {
+      this.$store.dispatch("updateWeather", { countrySelected, city });
     },
     sortCountryCodes(): void {
       this.countries.sort((a: { code: string }, b: { code: string }) => {
