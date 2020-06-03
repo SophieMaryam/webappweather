@@ -13,9 +13,9 @@ export const mutations = {
   },
   UPDATE_TEMPERATURE(
     state: { temperature: string | undefined },
-    payload: { temp: string | undefined; }[]
+    payload: { data: { temp: string }[] }
   ) {
-    state.temperature = payload[0].temp;
+    state.temperature = payload.data[0].temp;
   },
   UPDATE_CITY_NAME(state: { cityName: string }, payload: string) {
     state.cityName = payload;
