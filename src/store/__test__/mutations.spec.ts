@@ -6,7 +6,7 @@ describe('mutations', () => {
     const state = {
         temperature: ""
     }
-    mutations.UPDATE_TEMPERATURE(state, data)
+    mutations.UPDATE_TEMPERATURE(state, { data })
     expect(state.temperature).toBe(data[0].temp)
   })
 
