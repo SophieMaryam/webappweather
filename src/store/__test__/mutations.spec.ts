@@ -6,7 +6,7 @@ describe('mutations', () => {
     const state = {
         temperature: ""
     }
-    mutations.UPDATE_TEMPERATURE(state, { data })
+    mutations.UPDATE_TEMPERATURE(state, data)
     expect(state.temperature).toBe(data[0].temp)
   })
 
@@ -19,7 +19,7 @@ describe('mutations', () => {
     expect(state.cityName).toBe(city_name)
   })
 
-  it('UPDATE_WEATHER sets state.weater to cityName', () => {
+  it('UPDATE_WEATHER sets state.weather to cityName', () => {
     const data = [{id:1}, {id:2}]
     const dataReceived = true;
     const startLoading = true;
@@ -28,7 +28,7 @@ describe('mutations', () => {
         dataReceived: false,
         startLoading: false
     }
-    mutations.UPDATE_WEATHER(state, { data })
+    mutations.UPDATE_WEATHER(state, data)
     expect(state.weather).toBe(data)
     expect(state.dataReceived).toBe(dataReceived)
     expect(state.startLoading).toBe(startLoading)
