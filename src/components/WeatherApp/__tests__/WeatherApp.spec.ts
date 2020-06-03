@@ -9,14 +9,12 @@ const localVue = createLocalVue();
 
 localVue.use(Vuex);
 
-describe("WeatherApp on mount", () => {
-  let state: any;
-  let getters: any;
-  let store: any;
-  let wrapper: any;
-  let mutations: any;
-  let actions: any;
+let wrapper: any;
+let state: any;
+let getters: any;
+let store: any;
 
+describe("WeatherApp on mount", () => {
   beforeEach(() => {
     state = {
       startLoading: false
@@ -26,13 +24,14 @@ describe("WeatherApp on mount", () => {
     };
     store = new Vuex.Store({
       state,
-      getters,
-      mutations,
-      actions
+      getters
     });
     wrapper = shallowMount(WeatherApp, {
       store,
-      localVue
+      localVue,
+      computed: {
+        isMobile: () => false
+      }
     });
   });
 
@@ -44,28 +43,68 @@ describe("WeatherApp on mount", () => {
     expect(wrapper.vm.isLoading).toBe(false);
   });
 
-  it("shows WeatherIput components", () => {
+  it("shows only WeatherInput component on mobile screen", () => {
     expect(wrapper.vm.isLoading).toBe(false);
+    expect(wrapper.vm.isMobile).toBe(false);
     expect(wrapper.findComponent(WeatherInput).element).toBeVisible();
   });
 
   it("does not show CountryWeatherForecast component", () => {
+    expect(wrapper.vm.isLoading).toBe(false);
     expect(
       wrapper.findComponent(CountryWeatherForecast).element
     ).not.toBeVisible();
   });
+});
 
+describe("WeatherApp", () => {
+  beforeEach(() => {
+    state = {
+      startLoading: true
+    };
+    getters = {
+      startLoading: (state: { startLoading: boolean }) => state.startLoading,
+    };
+    store = new Vuex.Store({
+      state,
+      getters
+    });
 
+    wrapper = shallowMount(WeatherApp, {
+      store,
+      localVue,
+      computed: {
+        isMobile: () => false
+      }
+    });
+  });
 
-  // it("renders `store.getters.isLoading` as true", () => {
-  //   // const cmp = shallowMount(WeatherApp, {
-  //   //   computed: {
-  //   //     isLoading: () => true
-  //   //   }
-  //   // })
-  //   expect(mutations.UPDATE_WEATHER).toHaveBeenCalled();
-  //   // expect(
-  //   //   wrapper.findComponent(CountryWeatherForecast).element
-  //   // ).toBeVisible();
-  // });
+  it("assigns only `centered` class", () => {
+    expect(wrapper.classes()).toContain("centered");
+  });
+
+  it("renders `store.getters.isLoading` as false", async () => {
+    expect(wrapper.vm.isLoading).toBe(true);
+  });
+
+  it("shows Weather Input and CountryWeatherForecast on mobile screens", () => {
+    expect(wrapper.vm.isLoading).toBe(true);
+    expect(wrapper.vm.isMobile).toBe(false);
+    expect(wrapper.findComponent(WeatherInput).element).toBeVisible();
+    expect(
+      wrapper.findComponent(CountryWeatherForecast).element
+    ).toBeVisible();
+  });
+
+  it("shows only CountryWeatherForecast component on desktop", () => {
+    wrapper.vm._computedWatchers.isMobile.value = true
+    expect(wrapper.vm.isLoading).toBe(true);
+    expect(wrapper.vm.isMobile).toBe(true);
+    expect(
+      wrapper.findComponent(WeatherInput).element
+    ).not.toBeVisible();
+    expect(
+      wrapper.findComponent(CountryWeatherForecast).element
+    ).toBeVisible();
+  });
 });
