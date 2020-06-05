@@ -11,13 +11,10 @@ export const mutations = {
     state.dataReceived = true;
     state.startLoading = true;
   },
-  UPDATE_TEMPERATURE(
-    state: { temperature: any; },
-    payload: string
-  ) {
-    state.temperature = payload
+  UPDATE_TEMPERATURE(state: { temperature: any }, payload: string) {
+    state.temperature = payload;
   },
   UPDATE_CITY_NAME(state: { cityName: string }, payload: string) {
     state.cityName = payload;
-  },
+  }
 };
