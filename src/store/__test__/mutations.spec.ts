@@ -2,12 +2,12 @@
 
 describe('mutations', () => {
   it('UPDATE_TEMPERATURE sets state.temperature to data', () => {
-    const data = [{ temp: "27" }];
+    const data = "27";
     const state = {
         temperature: ""
     }
-    mutations.UPDATE_TEMPERATURE(state, { data })
-    expect(state.temperature).toBe(data[0].temp)
+    mutations.UPDATE_TEMPERATURE(state, data)
+    expect(state.temperature).toBe(data)
   })
 
   it('UPDATE_CITY_NAME sets state.cityName to city_name', () => {
